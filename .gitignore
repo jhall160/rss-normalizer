@@ -1,0 +1,4 @@
+/rssnorm
+*.test
+*.out
+.DS_Store
