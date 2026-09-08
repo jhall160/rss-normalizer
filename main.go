@@ -12,7 +12,7 @@ func main() {
 	jsonOut := flag.Bool("json", false, "emit the normalized feed as JSON instead of human-readable text")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "usage: %s [--json] [file]\n\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "Reads an RSS feed (from file, or stdin if no file is given) and prints a\nnormalized version: entities decoded, whitespace collapsed, dates parsed.\n\n")
+		fmt.Fprintf(os.Stderr, "Reads an RSS or Atom feed (from file, or stdin if no file is given) and\nprints a normalized version: entities decoded, whitespace collapsed, dates\nparsed.\n\n")
 		flag.PrintDefaults()
 	}
 	flag.Parse()
@@ -28,7 +28,7 @@ func main() {
 		r = f
 	}
 
-	feed, err := ParseRSS(r)
+	feed, err := ParseFeed(r)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "rssnorm:", err)
 		os.Exit(1)

@@ -7,10 +7,12 @@ multiple lines with stray tabs, `pubDate` values that ignore RFC 822 and
 paste in whatever format the CMS felt like that day, missing `guid`
 elements, and so on.
 
-`rssnorm` reads an RSS 2.0 document and prints a normalized version of
-it: entities decoded once, whitespace collapsed to single spaces, dates
-parsed where possible (and passed through as-is, flagged, when they
-aren't), and a `guid` filled in from the item link when one is missing.
+`rssnorm` reads an RSS 2.0 or Atom 1.0 document and prints a normalized
+version of it: entities decoded once, whitespace collapsed to single
+spaces, dates parsed where possible (and passed through as-is, flagged,
+when they aren't), and a `guid` filled in from the item link when one is
+missing. The format is detected from the document's root element, so
+there's nothing to tell it which one you're feeding it.
 
 ## Usage
 
@@ -77,9 +79,9 @@ go run . --json feed.xml
 
 ## Status
 
-Handles RSS 2.0. Only standard library, no dependencies. See the
-project's issues for what's missing (Atom support, namespaced
-extensions like `content:encoded`, and so on).
+Handles RSS 2.0 and Atom 1.0. Only standard library, no dependencies.
+Namespaced extensions like `content:encoded` aren't read yet - the
+`description`/`summary` field is whatever the base spec gives you.
 
 ## License
 
