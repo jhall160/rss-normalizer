@@ -28,6 +28,10 @@ type Item struct {
 	// RawDate is set when PubDate was present but didn't match any
 	// layout we know about, so callers can still see the original value.
 	RawDate string `json:"raw_date,omitempty"`
+	// Content holds the full item body when the feed provides one
+	// separately from its (often truncated) description: RSS's
+	// content:encoded extension, or Atom's <content> element.
+	Content string `json:"content,omitempty"`
 }
 
 type rawRSS struct {
@@ -45,6 +49,11 @@ type rawItem struct {
 	Description string `xml:"description"`
 	GUID        string `xml:"guid"`
 	PubDate     string `xml:"pubDate"`
+	// Encoded is the content:encoded element from the RSS content
+	// module (http://purl.org/rss/1.0/modules/content/), used by
+	// most feed generators (WordPress included) to carry the full
+	// HTML body alongside a shorter plain-text description.
+	Encoded string `xml:"http://purl.org/rss/1.0/modules/content/ encoded"`
 }
 
 // rawAtom mirrors the parts of an Atom 1.0 <feed> we care about. Atom
@@ -155,6 +164,7 @@ func parseRSS(data []byte) (*Feed, error) {
 			Link:        clean(ri.Link),
 			Description: clean(ri.Description),
 			GUID:        clean(ri.GUID),
+			Content:     clean(ri.Encoded),
 		}
 		if item.GUID == "" {
 			item.GUID = item.Link
@@ -190,6 +200,7 @@ func parseAtom(data []byte) (*Feed, error) {
 			Link:        clean(atomHref(re.Links)),
 			Description: clean(firstNonEmpty(re.Summary, re.Content)),
 			GUID:        clean(re.ID),
+			Content:     clean(re.Content),
 		}
 		if item.GUID == "" {
 			item.GUID = item.Link

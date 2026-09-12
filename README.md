@@ -80,8 +80,11 @@ go run . --json feed.xml
 ## Status
 
 Handles RSS 2.0 and Atom 1.0. Only standard library, no dependencies.
-Namespaced extensions like `content:encoded` aren't read yet - the
-`description`/`summary` field is whatever the base spec gives you.
+RSS's `content:encoded` extension and Atom's `<content>` element are
+picked up into a separate `content` field alongside `description`, since
+feeds often use the latter for a short summary and the former for the
+full body. Other namespaced extensions (`dc:creator` and friends) aren't
+read yet.
 
 ## License
 
