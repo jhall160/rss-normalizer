@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Date Format Zoo</title>
+    <link>https://example.com/</link>
+    <description>Covers the pubDate variants seen in the wild</description>
+    <item>
+      <title>RFC1123Z with numeric zone</title>
+      <link>https://example.com/1</link>
+      <guid>https://example.com/1</guid>
+      <pubDate>Mon, 02 Jan 2006 15:04:05 -0700</pubDate>
+    </item>
+    <item>
+      <title>RFC822 with zone abbreviation</title>
+      <link>https://example.com/2</link>
+      <guid>https://example.com/2</guid>
+      <pubDate>02 Jan 06 15:04 MST</pubDate>
+    </item>
+    <item>
+      <title>Bare ISO 8601 date</title>
+      <link>https://example.com/3</link>
+      <guid>https://example.com/3</guid>
+      <pubDate>2006-01-02</pubDate>
+    </item>
+    <item>
+      <title>Garbage date text</title>
+      <link>https://example.com/4</link>
+      <guid>https://example.com/4</guid>
+      <pubDate>next Tuesday-ish</pubDate>
+    </item>
+    <item>
+      <title>No date at all</title>
+      <link>https://example.com/5</link>
+      <guid>https://example.com/5</guid>
+    </item>
+  </channel>
+</rss>

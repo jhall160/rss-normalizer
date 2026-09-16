@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Atom Date Format Zoo</title>
+  <link rel="alternate" href="https://example.org/"/>
+  <entry>
+    <title>Published wins over updated</title>
+    <link rel="alternate" href="https://example.org/1"/>
+    <id>https://example.org/1</id>
+    <published>2021-06-01T09:00:00Z</published>
+    <updated>2021-06-02T09:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>Falls back to updated when published is missing</title>
+    <link rel="alternate" href="https://example.org/2"/>
+    <id>https://example.org/2</id>
+    <updated>2021-06-03T09:00:00-04:00</updated>
+  </entry>
+  <entry>
+    <title>Malformed published date</title>
+    <link rel="alternate" href="https://example.org/3"/>
+    <id>https://example.org/3</id>
+    <published>whenever I got around to it</published>
+  </entry>
+</feed>
